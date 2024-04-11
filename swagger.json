@@ -1,0 +1,120 @@
+{
+  "swagger": "2.0",
+  "paths": {
+    "/currency/{date}": {
+      "get": {
+        "description": "Save currency",
+        "tags": [
+          "Test"
+        ],
+        "operationId": "SaveCurrencyRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "ContentType",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/SaveCurrencyResponse"
+          }
+        }
+      }
+    },
+    "/currency/{date}/{code}": {
+      "get": {
+        "description": "Get currency",
+        "tags": [
+          "Test"
+        ],
+        "operationId": "GetCurrencyRateByDateAndCodeRequest",
+        "parameters": [
+          {
+            "type": "string",
+            "x-go-name": "ContentType",
+            "name": "Content-Type",
+            "in": "header"
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/GetCurrencyRateByDateAndCodeResponse"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Currency": {
+      "type": "object",
+      "properties": {
+        "aDate": {
+          "type": "string",
+          "x-go-name": "ADate"
+        },
+        "code": {
+          "type": "string",
+          "x-go-name": "Code"
+        },
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "x-go-name": "ID"
+        },
+        "title": {
+          "type": "string",
+          "x-go-name": "Title"
+        },
+        "value": {
+          "type": "number",
+          "format": "double",
+          "x-go-name": "Value"
+        }
+      },
+      "x-go-package": "test/src/domain"
+    },
+    "GetCurrencyByDateAndCodeResponse": {
+      "type": "object",
+      "properties": {
+        "currencies": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Currency"
+          },
+          "x-go-name": "Currencies"
+        }
+      },
+      "x-go-package": "test/src/transport"
+    },
+    "SaveCurrenciesResponse": {
+      "type": "object",
+      "properties": {
+        "msg": {
+          "type": "string",
+          "x-go-name": "Msg"
+        },
+        "success": {
+          "type": "boolean",
+          "x-go-name": "Success"
+        }
+      },
+      "x-go-package": "test/src/transport"
+    }
+  },
+  "responses": {
+    "GetCurrencyRateByDateAndCodeResponse": {
+      "description": "",
+      "schema": {
+        "$ref": "#/definitions/GetCurrencyByDateAndCodeResponse"
+      }
+    },
+    "SaveCurrencyResponse": {
+      "description": "",
+      "schema": {
+        "$ref": "#/definitions/SaveCurrenciesResponse"
+      }
+    }
+  }
+}
